@@ -1,0 +1,41 @@
+{
+  "name": "papertrail-s3-tail-stream",
+  "version": "1.0.0",
+  "description": "Process and tail logs from papertrail S3 log archives",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eugeneware/papertrail-s3-tail-stream"
+  },
+  "keywords": [
+    "s3",
+    "papertrail",
+    "archive",
+    "log",
+    "logging",
+    "logs",
+    "s3",
+    "aws",
+    "stream",
+    "streams",
+    "streaming"
+  ],
+  "author": "Eugene Ware <eugene@noblesamurai.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/eugeneware/papertrail-s3-tail-stream/issues"
+  },
+  "dependencies": {
+    "clone": "^1.0.2",
+    "s3-tail-stream": "^1.1.0",
+    "split2": "^1.1.0",
+    "streamlined": "^0.8.0"
+  },
+  "devDependencies": {
+    "moment": "^2.11.0",
+    "tape": "^4.4.0"
+  }
+}
