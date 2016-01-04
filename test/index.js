@@ -22,7 +22,6 @@ it('should be able to tail from papertrail', function(t) {
       t.error(err);
     })
     .on('data', function (data) {
-      console.log(data);
       count++;
       t.deepEqual(Object.keys(data), [
         'id', 'received_at', 'generated_at', 'source_id', 'source_name',
