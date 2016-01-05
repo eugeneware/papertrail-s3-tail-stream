@@ -88,8 +88,8 @@ objects that match the query.
     * `Marker` (optional) - An S3 object to start listing objects from. Useful
       if you don't want to list all the objects in a bucket, but those *after*
       this marker.
-    * `from` (optional) - Javascript Date object that is used to return objects
-      *older* than this date.
+    * `from` (optional) - Javascript Date object that is used to return objects equal to or
+      older than this date.
   * `retry` (optional) - Interval in (ms) to keep looking for new files (ie. tail) that
     match the query. Leave this, or set this to `null` to have the stream
     end when it runs out of files. NB: Setting this too low may cause API

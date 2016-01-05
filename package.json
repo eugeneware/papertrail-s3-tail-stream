@@ -32,6 +32,7 @@
     "clone": "^1.0.2",
     "s3-tail-stream": "^1.1.0",
     "split2": "^1.1.0",
+    "stream-combiner": "^0.2.2",
     "streamlined": "^0.8.0"
   },
   "devDependencies": {

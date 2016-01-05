@@ -3,6 +3,7 @@ var s3TailStream = require('s3-tail-stream'),
     moment = require('moment'),
     split = require('split2'),
     zlib = require('zlib'),
+    combine = require('stream-combiner'),
     sl = require('streamlined');
 
 module.exports = papertrailS3TailStream;
@@ -21,16 +22,22 @@ function papertrailS3TailStream(_opts) {
 
   opts.uncompress = zlib.createGunzip;
   var s3s = s3TailStream(opts);
-  var rs =
-    s3s
-      .pipe(split())
-      .pipe(sl.map(tabSplit, logMap));
+  var pipes = [
+    s3s,
+    split(),
+    sl.map(tabSplit, logMap)
+  ];
 
-  s3s
-    .on('s3-object', function (obj) {
-      rs.emit('s3-object', obj)
-    })
-    .on('error', rs.emit.bind(rs, 'error'));
+  if (fromDate !== null) {
+    pipes.push(sl.where(function (entry) {
+      return entry.generated_at >= fromDate;
+    }));
+  }
+
+  var rs = combine(pipes);
+  s3s.on('s3-object', function (obj) {
+    rs.emit('s3-object', obj)
+  });
 
   return rs;
 }
@@ -42,8 +49,8 @@ function tabSplit(data) {
 function logMap(data) {
   return {
     id: data[0],
-    received_at: data[1],
-    generated_at: data[2],
+    received_at: new Date(data[1]),
+    generated_at: new Date(data[2]),
     source_id: data[3],
     source_name: data[4],
     source_ip: data[5],
