@@ -11,7 +11,10 @@ function papertrailS3TailStream(_opts) {
 
   var opts = clone(_opts);
 
-  var fromDate = _opts.query.from || null;
+  var fromDate = _opts.query.fromDate || null;
+  // Marker is good enough to efficiently see, don't need to use modification
+  // date of object
+  delete _opts.query.from;
 
   if (fromDate !== null) {
     var marker = opts.query.Prefix + 'dt=' +
