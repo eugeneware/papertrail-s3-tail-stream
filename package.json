@@ -1,6 +1,6 @@
 {
   "name": "papertrail-s3-tail-stream",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Process and tail logs from papertrail S3 log archives",
   "main": "index.js",
   "scripts": {
