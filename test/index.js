@@ -41,7 +41,7 @@ it('should be able to tail from papertrail from a given time', function(t) {
     query: {
       Bucket: 's3-tail-stream',
       Prefix: 'papertrail/logs/412154/',
-      fromDate: fromDate
+      from: fromDate
     }
   };
 
