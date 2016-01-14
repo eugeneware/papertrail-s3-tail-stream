@@ -41,6 +41,9 @@ function papertrailS3TailStream(_opts) {
   s3s.on('s3-object', function (obj) {
     rs.emit('s3-object', obj)
   });
+  s3s.on('s3-retry', function (obj) {
+    rs.emit('s3-retry', obj)
+  });
 
   return rs;
 }
